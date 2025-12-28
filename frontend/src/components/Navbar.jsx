@@ -24,8 +24,8 @@ const Navbar = () => {
             <div className="w-10 h-10 rounded-xl flex items-center justify-center">
               <GraduationCap className="w-6 h-6 text-primary-foreground" />
             </div>
-            <span className="font-bold text-xl">
-              Global<span className="text-primary">Study</span>
+            <span className="font-bold text-slate-900 text-xl">
+              Global<span className="text-blue-600">Study</span>
             </span>
           </Link>
 
@@ -35,7 +35,7 @@ const Navbar = () => {
               <Link
                 key={link.name}
                 to={link.to}
-                className="text-slate-900 hover:text-primary transition-colors font-medium"
+                className="text-slate-900 hover:text-blue-600 transition-colors font-medium"
               >
                 {link.name}
               </Link>
@@ -44,12 +44,12 @@ const Navbar = () => {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-3">
-          <button className="px-4 py-2 text-sm font-medium hover:text-primary">
+          <button className="px-4 py-2 text-slate-900 text-sm font-medium hover:text-blue-600 !border-0">
             Login
           </button>
 
-          <button className="px-4 py-2 text-sm font-medium hover:text-primary">
-            Login
+          <button className="px-4 py-2 text-slate-900 !bg-blue-200 text-sm font-medium hover:bg-blue-300">
+           Get started
           </button>
 
           </div>

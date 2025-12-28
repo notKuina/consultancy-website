@@ -1,28 +1,43 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 const Home = () => {
   return (
-    <div className="font-sans w-full overflow-x-hidden">
+    <div className="font-roboto w-full  overflow-x-hidden">
 
-      {/* Hero Section */}
-      <section className="w-full bg-gradient-to-br from white to-blue-200 text-black py-32 px-5 text-center">
-        <h1 className="py-50px ">
-          Study in Australia, USA, UK, Canada & more
-        </h1>
-<br/>
-        <p className="text-lg max-w-xl ">
-          We guide you through every step of your international education journey. 
-          From university selection to visa approval, we make your study abroad 
-          dreams a reality.
-        </p>
+      <section className="w-full h-148 bg-gradient-to-br from-blue-200 via-white to-blue-200 text-black px-5 flex flex-col justify-between text-center">
+        
+        {/* Top Content */}
+          <div className="mt-30">
+            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-tight animate-slide-up">
+              Your Dream of{" "}
+              <span className="bg-gradient-to-br from-purple-800 to-orange-600 bg-clip-text text-transparent">
+                Studying Abroad
+              </span><br/>
+              Starts Here
+            </h1>
 
-        <a
-          href="/register"
-          className="inline-block bg-yellow-400 text-white font-semibold py-3 px-8 rounded hover:bg-yellow-300 transition"
-        >
-          Start your Journey
-        </a>
+
+
+          <p className= "text-lg max-w-xl text-left mt-20">
+            We guide you through every step of your international education journey. 
+            From university selection to visa approval, we make your study abroad 
+            dreams a reality.
+          </p>
+        </div>
+
+        {/* Bottom Button */}
+        <div className="mb-24">
+          <Link
+            to="/register"
+            className="!text-slate-900 bg-blue-400  font-semibold py-3 px-8 rounded  hover:bg-blue-200  transition"
+          >
+            Apply here
+          </Link>
+        </div>
+
       </section>
+
 
       {/* Services Section */}
       <section className="w-full bg-gray-100 py-20 px-5">
