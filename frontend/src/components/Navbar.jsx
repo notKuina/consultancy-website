@@ -1,0 +1,98 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { Menu, X, GraduationCap } from "lucide-react";
+import React from "react";
+
+const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const navLinks = [
+    { name: "Home", to: "/" },
+    { name: "Services", to: "/services" },
+    { name: "How It Works", to: "/process" },
+    { name: "Testimonials", to: "/testimonials" },
+    { name: "Contact", to: "/contact" },
+  ];
+
+  return (
+    <header className="fixed top-0 left-0 right-0 z-50 bg-card/80 backdrop-blur-md border-b border-border">
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between h-16 md:h-20">
+
+          {/* Logo */}
+          <Link to="/" className="flex items-center gap-2">
+            <div className="w-10 h-10 rounded-xl flex items-center justify-center">
+              <GraduationCap className="w-6 h-6 text-primary-foreground" />
+            </div>
+            <span className="font-bold text-xl">
+              Global<span className="text-primary">Study</span>
+            </span>
+          </Link>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-8">
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                to={link.to}
+                className="text-slate-900 hover:text-primary transition-colors font-medium"
+              >
+                {link.name}
+              </Link>
+            ))}
+          </nav>
+
+          {/* Desktop CTA */}
+          <div className="hidden md:flex items-center gap-3">
+          <button className="px-4 py-2 text-sm font-medium hover:text-primary">
+            Login
+          </button>
+
+          <button className="px-4 py-2 text-sm font-medium hover:text-primary">
+            Login
+          </button>
+
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden p-2"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? <X /> : <Menu />}
+          </button>
+        </div>
+
+        {/* Mobile Navigation */}
+        {isMenuOpen && (
+          <div className="md:hidden py-4 border-t border-border">
+            <nav className="flex flex-col gap-2">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  to={link.to}
+                  className="px-4 py-2 hover:bg-secondary rounded-lg"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {link.name}
+                </Link>
+              ))}
+
+              <div className="flex gap-2 px-4 pt-4">
+                <Button variant="outline" size="sm" className="flex-1">
+                  Login
+                </Button>
+            <button className="px-4 py-2 text-sm font-medium hover:text-primary">
+              Login
+            </button>
+
+              </div>
+            </nav>
+          </div>
+        )}
+      </div>
+    </header>
+  );
+};
+
+export default Navbar;
