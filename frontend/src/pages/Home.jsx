@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <div className="font-roboto w-full  overflow-x-hidden">
 
-      <section className="w-full h-148 bg-gradient-to-br from-blue-200 via-white to-blue-200 text-black px-5 flex flex-col justify-between text-center">
+      <section className="w-full min-h-screen bg-gradient-to-br from-blue-200 via-white to-blue-200 text-black px-5 flex flex-col justify-between text-center">
         
         {/* Top Content */}
           <div className="mt-30">
@@ -27,10 +27,10 @@ const Home = () => {
         </div>
 
         {/* Bottom Button */}
-        <div className="mb-24">
+        <div className="mb-10 mt-10 md:mt-6 sm:mt-14">
           <Link
             to="/register"
-            className="!text-slate-900 bg-blue-400  font-semibold py-3 px-8 rounded  hover:bg-blue-200  transition"
+            className="inline-block !text-slate-900 bg-blue-400  font-semibold py-3 px-8 rounded  hover:bg-blue-200  transition"
           >
             Apply here
           </Link>

@@ -35,7 +35,7 @@ const Navbar = () => {
               <Link
                 key={link.name}
                 to={link.to}
-                className="text-slate-900 hover:text-blue-600 transition-colors font-medium"
+                className="!text-slate-900 hover:text-blue-600 transition-colors font-medium"
               >
                 {link.name}
               </Link>
@@ -56,37 +56,40 @@ const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2"
+            className="md:hidden p-2 text-slate-900 border-2 border-blue-600"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            {isMenuOpen ? <X /> : <Menu />}
+            {isMenuOpen ? <X size={28}/> : <Menu size={28}/>}
           </button>
         </div>
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-border">
-            <nav className="flex flex-col gap-2">
+          <div className="md:hidden border-t border-border " >
+            <nav className="flex flex-col gap-2 py-4">
+
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
                   to={link.to}
-                  className="px-4 py-2 hover:bg-secondary rounded-lg"
+                  className="px-4 py-2 !text-slate-900 hover:bg-blue-50 rounded-lg"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {link.name}
                 </Link>
               ))}
 
-              <div className="flex gap-2 px-4 pt-4">
-                <Button variant="outline" size="sm" className="flex-1">
-                  Login
-                </Button>
-            <button className="px-4 py-2 text-sm font-medium hover:text-primary">
-              Login
-            </button>
+          <div className="flex flex-col px-4 pt-4 gap-3">
+          <button className="px-4 py-2 text-white text-sm font-medium !bg-blue-600 hover:text-blue-500 !border-0">
+            Login
+          </button>
 
-              </div>
+          <button className="px-4 py-2 text-white !bg-blue-600 hover:text-blue-500 text-sm font-medium">
+           Get started
+          </button>
+
+          </div>
+
             </nav>
           </div>
         )}
