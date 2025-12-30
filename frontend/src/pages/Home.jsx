@@ -5,38 +5,24 @@ const Home = () => {
   return (
     <div className="font-roboto w-full  overflow-x-hidden">
 
-      <section className="w-full min-h-screen bg-gradient-to-br from-blue-200 via-white to-blue-200 text-black px-5 flex flex-col justify-between text-center">
-        
-        {/* Top Content */}
-          <div className="mt-30">
-            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-tight animate-slide-up">
-              Your Dream of{" "}
-              <span className="bg-gradient-to-br from-purple-800 to-orange-600 bg-clip-text text-transparent">
-                Studying Abroad
-              </span><br/>
-              Starts Here
-            </h1>
-
-
-
-          <p className= "text-lg max-w-xl text-left mt-20">
-            We guide you through every step of your international education journey. 
-            From university selection to visa approval, we make your study abroad 
-            dreams a reality.
-          </p>
-        </div>
-
-        {/* Bottom Button */}
-        <div className="mb-10 mt-10 md:mt-6 sm:mt-14">
-          <Link
-            to="/register"
-            className="inline-block !text-slate-900 bg-blue-400  font-semibold py-3 px-8 rounded  hover:bg-blue-200  transition"
-          >
-            Apply here
-          </Link>
-        </div>
-
+        <section className="w-full h-screen flex flex-col justify-center items-center text-center bg-gradient-to-br from-blue-200 via-white to-blue-200 px-5">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold">
+          Your Dream of{" "}
+          <span className="bg-gradient-to-br from-purple-800 to-orange-600">
+            Studying Abroad
+          </span>
+          <br />
+          Starts Here
+        </h1>
+        <p className="mt-8 text-lg md:text-xl max-w-xl">
+          We guide you through every step of your international education journey. 
+          From university selection to visa approval, we make your study abroad dreams a reality.
+        </p>
+        <Link className="mt-10 bg-blue-400 hover:bg-blue-200 text-slate-900 py-3 px-8 rounded font-semibold">
+          Apply here
+        </Link>
       </section>
+
 
 
       {/* Services Section */}
