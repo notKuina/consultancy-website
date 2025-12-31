@@ -1,56 +1,52 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import ServicesSection from "./ServicesSection";
+import ProcessSection from "./ProcessSection";
+import Testimonials from "./Testimonials";
+import CTASection from "./CTASection"; // ✅ added import
 
 const Home = () => {
   return (
-    <div className="font-roboto w-full  overflow-x-hidden">
+    <div className="font-roboto w-full overflow-x-hidden">
 
-        <section className="w-full h-screen flex flex-col justify-center items-center text-center bg-gradient-to-br from-blue-200 via-white to-blue-200 px-5">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold">
-          Your Dream of{" "}
-          <span className="bg-gradient-to-br from-purple-800 to-orange-600">
-            Studying Abroad
-          </span>
-          <br />
-          Starts Here
-        </h1>
-        <p className="mt-8 text-lg md:text-xl max-w-xl">
-          We guide you through every step of your international education journey. 
-          From university selection to visa approval, we make your study abroad dreams a reality.
+      {/* HERO SECTION */}
+      <section className="w-full min-h-screen pt-20 flex flex-col items-start text-left bg-gradient-to-br from-blue-200 via-white to-blue-200 px-5 md:px-20">
+
+        {/* Heading centered */}
+        <div className="w-full flex justify-center">
+          <h1 className="mt-12 text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-center whitespace-nowrap">
+            Your Dream of{" "}
+            <span className="inline-block bg-gradient-to-br from-purple-800 to-orange-600 bg-clip-text text-transparent">
+              Studying Abroad
+            </span>
+            <br />
+            Starts Here
+          </h1>
+        </div>
+
+        {/* Paragraph left-aligned */}
+        <p className="mt-6 text-lg md:text-xl max-w-xl text-slate-700">
+          We guide you through every step of your international education journey.
+          From university selection to visa approval, we make your study abroad
+          dreams a reality.
         </p>
-        <Link className="mt-10 bg-blue-400 hover:bg-blue-200 text-slate-900 py-3 px-8 rounded font-semibold">
-          Apply here
-        </Link>
-      </section>
 
-
-
-      {/* Services Section */}
-      <section className="w-full bg-gray-100 py-20 px-5">
-        <h2 className="text-3xl font-semibold mb-12 text-center">Our Services</h2>
-        <div className="flex flex-wrap justify-center gap-6 max-w-screen-xl mx-auto">
-          <div className="bg-white shadow-md rounded-lg p-8 flex-1 min-w-[250px] hover:shadow-xl transition">
-            <h3 className="text-xl font-bold mb-3">University Guidance</h3>
-            <p>Get expert guidance to choose the right university and course.</p>
-          </div>
-          <div className="bg-white shadow-md rounded-lg p-8 flex-1 min-w-[250px] hover:shadow-xl transition">
-            <h3 className="text-xl font-bold mb-3">Document Assistance</h3>
-            <p>Help with SOP, recommendation letters, and admission forms.</p>
-          </div>
-          <div className="bg-white shadow-md rounded-lg p-8 flex-1 min-w-[250px] hover:shadow-xl transition">
-            <h3 className="text-xl font-bold mb-3">Visa Support</h3>
-            <p>Complete support for visa application and interview preparation.</p>
-          </div>
+        {/* Button centered */}
+        <div className="w-full flex justify-center mt-8">
+          <Link
+            to="/register"
+            className="bg-blue-500 hover:bg-blue-400 text-white py-3 px-8 rounded-full font-semibold transition w-max"
+          >
+            Apply here
+          </Link>
         </div>
       </section>
 
-      {/* About Section */}
-      <section className="w-full py-20 px-5 text-center">
-        <h2 className="text-3xl font-semibold mb-6">Why Choose Us?</h2>
-        <p className="max-w-4xl mx-auto text-gray-700 text-lg md:text-xl">
-          We have helped hundreds of students achieve their dream of studying abroad with expert guidance, personalized support, and trusted consultancy services.
-        </p>
-      </section>
+      {/* Other sections */}
+      <ServicesSection id="services" />
+      <ProcessSection id="process" />
+      <Testimonials id="testimonials" />
+      <CTASection id="contact" />
 
     </div>
   );

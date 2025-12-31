@@ -7,6 +7,7 @@ import {
   HeadphonesIcon 
 } from "lucide-react";
 import React from "react";
+import { Element } from "react-scroll";
 
 const ServicesSection = () => {
   const services = [
@@ -43,18 +44,20 @@ const ServicesSection = () => {
   ];
 
   return (
-    <section id="services" className="py-20 bg-secondary/50">
+    <section id="services" className="py-20 bg-gray-50 scroll-mt-24">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary font-medium text-sm mb-4">
+          <span className="inline-block px-4 py-2 bg-blue-100 rounded-full text-blue-600 font-medium text-sm mb-4">
             Our Services
           </span>
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <h2 className="font-display text-5xl md:text-4xl font-bold text-gray-900 mb-4">
             Everything You Need to{" "}
-            <span className="text-gradient">Study Abroad</span>
+            <span className="inline-block bg-gradient-to-br from-purple-800 to-orange-600 bg-clip-text text-transparent">
+              Study Abroad
+            </span>
           </h2>
-          <p className="text-muted-foreground">
+          <p className="text-gray-600">
             From choosing the right university to settling in your new country, 
             we provide comprehensive support at every step.
           </p>
@@ -65,15 +68,17 @@ const ServicesSection = () => {
           {services.map((service, index) => (
             <div
               key={index}
-              className="group bg-white rounded-2xl p-6 card-shadow hover:card-shadow-hover transition-all duration-300 hover:-translate-y-1"
+              className="group bg-white rounded-2xl p-6 shadow-md transition-all duration-300 hover:shadow-xl "
             >
-              <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
-                <service.icon className="w-7 h-7 text-primary group-hover:text-slate-900 transition-colors" />
+              <div className="w-14 h-14 rounded-xl bg-blue-100 flex items-center justify-center mb-4 group-hover:bg-blue-600 group-hover:scale-110 transition-all duration-300 ease-in-out">
+                <service.icon className="w-7 h-7 text-blue-600 group-hover:text-white transition-colors duration-300" />
               </div>
-              <h3 className="font-display text-xl font-semibold text-foreground mb-2">
+              <h3 className="font-display text-xl font-semibold text-gray-900 mb-2 transition-colors duration-300">
                 {service.title}
               </h3>
-              <p className="text-muted-foreground">{service.description}</p>
+              <p className="text-gray-600  transition-colors duration-300">
+                {service.description}
+              </p>
             </div>
           ))}
         </div>

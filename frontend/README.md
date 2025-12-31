@@ -1,8 +1,9 @@
 This is a consultancy website for abroad study.
 
 
-package used:
--npm with vite
--tailwindcss
--lucide-react
--react-router-dom
+package used: <br>
+-npm with vite<br>
+-tailwindcss<br>
+-lucide-react<br>
+-react-router-dom<br>
+-npm i react-scroll<br>

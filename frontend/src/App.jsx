@@ -10,6 +10,7 @@ import CTASection from "./pages/CTASection";
 import ServicesSection from "./pages/ServicesSection";
 import Testimonials from "./pages/Testimonials";
 import Footer from "./components/Footer";
+import ProcessSection from "./pages/ProcessSection";
 
 function App() {
   return (
@@ -23,9 +24,9 @@ function App() {
         <Route path="/apply" element={<Apply />} />
         <Route path="/navbar" element={<Navbar />} />
         <Route path="/contact" element={<CTASection />} />
-        <Route path="/service" element={<ServicesSection/>} />
+        <Route path="/services" element={<ServicesSection/>} />
+        <Route path="process" element={<ProcessSection />} />
         <Route path="/testimonials" element={<Testimonials />} />
-        <Route path="/footer" element={<Footer />} />
       </Routes>
       <Footer />
     </BrowserRouter>

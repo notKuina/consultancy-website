@@ -64,16 +64,17 @@ const ProcessSection = () => {
   ];
 
   return (
-    <section id="process" className="py-20 bg-background">
+    <section id="process" className="py-20 bg-background scroll-mt-24">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="inline-block px-4 py-2 bg-accent/10 rounded-full text-accent font-medium text-sm mb-4">
+          <span className="inline-block px-4 py-2 bg-blue-100 rounded-full text-blue-600 font-medium text-sm mb-4">
             How It Works
           </span>
           <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
             Your Journey to{" "}
-            <span className="text-gradient">Success</span>
+          <span className="inline-block bg-gradient-to-br from-purple-800 to-orange-600 bg-clip-text text-transparent">
+Success</span>
           </h2>
           <p className="text-muted-foreground">
             Our streamlined 8-step process ensures a smooth and hassle-free 
@@ -95,17 +96,19 @@ const ProcessSection = () => {
                 }`}
               >
                 {/* Content Card */}
-                <div className={`flex-1 ${index % 2 === 0 ? "lg:text-right" : "lg:text-left"}`}>
+                <div className={`flex-1 ${index % 2 === 0} align-left m-10`}>
                   <div
-                    className={`bg-white rounded-2xl p-6 card-shadow hover:card-shadow-hover transition-all duration-300 inline-block max-w-md ${
+                    className={`bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-all duration-300 inline-block max-w-md ${
                       index % 2 === 0 ? "lg:ml-auto" : "lg:mr-auto"
                     }`}
                   >
-                    <div className={`flex items-center gap-4 mb-3 ${index % 2 === 0 ? "lg:flex-row-reverse" : ""}`}>
-                      <div className="w-12 h-12 rounded-xl hero-gradient flex items-center justify-center flex-shrink-0">
-                        <step.icon className="w-6 h-6 text-slate-900" />
+
+                    <div className={`flex items-center gap-4 mb-3 ${index % 2 === 0 }`}>
+                      <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center">
+                        <step.icon className="w-6 h-6 text-white" />
                       </div>
-                      <span className="font-display text-4xl font-bold text-primary/20">
+
+                      <span className="font-display text-4xl font-bold text-blue-200">
                         {step.step}
                       </span>
                     </div>

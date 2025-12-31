@@ -30,16 +30,17 @@ const Testimonials = () => {
   ];
 
   return (
-    <section id="testimonials" className="py-20 bg-secondary/50">
+    <section id="testimonials" className="py-20 bg-secondary/50 scroll-mt-24">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary font-medium text-sm mb-4">
+          <span className="inline-block px-4 py-2 bg-blue-100 rounded-full text-blue-600 font-medium text-sm mb-4">
             Success Stories
           </span>
           <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
             What Our{" "}
-            <span className="text-gradient">Students Say</span>
+          <span className="inline-block bg-gradient-to-br from-purple-800 to-orange-600 bg-clip-text text-transparent">
+Students Say</span>
           </h2>
           <p className="text-muted-foreground">
             Join thousands of students who have successfully achieved their 
@@ -52,20 +53,20 @@ const Testimonials = () => {
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="bg-white rounded-2xl p-6 card-shadow hover:card-shadow-hover transition-all duration-300 relative"
+              className="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-all duration-300 inline-block max-w-md"
             >
               {/* Quote Icon */}
-              <Quote className="absolute top-6 right-6 w-8 h-8 text-primary/10" />
+              <Quote className="absolute top-6 right-6 w-8 h-8 text-blue-100" />
 
               {/* Stars */}
-              <div className="flex gap-1 mb-4">
+              <div className="flex gap-1 mb-4 text-yellow-400">
                 {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-accent text-accent" />
+                  <Star key={i} className="w-5 h-5 text-yellow-400" />
                 ))}
               </div>
 
               {/* Text */}
-              <p className="text-muted-foreground mb-6 relative z-10">
+              <p className="mb-6 relative z-10 text-slate-500">
                 "{testimonial.text}"
               </p>
 
@@ -74,14 +75,14 @@ const Testimonials = () => {
                 <img
                   src={testimonial.image}
                   alt={testimonial.name}
-                  className="w-14 h-14 rounded-full object-cover border-2 border-primary/20"
+                  className="w-14 h-14 rounded-full object-cover border-2 border-blue-200"
                 />
                 <div>
                   <h4 className="font-display font-semibold text-foreground">
                     {testimonial.name}
                   </h4>
-                  <p className="text-sm text-primary">{testimonial.university}</p>
-                  <p className="text-xs text-muted-foreground">{testimonial.country}</p>
+                  <p className="text-sm text-blue-600">{testimonial.university}</p>
+                  <p className="text-xs text-slate-500">{testimonial.country}</p>
                 </div>
               </div>
             </div>
