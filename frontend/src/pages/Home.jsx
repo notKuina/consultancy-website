@@ -3,44 +3,50 @@ import { Link } from "react-router-dom";
 import ServicesSection from "./ServicesSection";
 import ProcessSection from "./ProcessSection";
 import Testimonials from "./Testimonials";
-import CTASection from "./CTASection"; // ✅ added import
+import CTASection from "./CTASection"; 
 
 const Home = () => {
   return (
     <div className="font-roboto w-full overflow-x-hidden">
 
       {/* HERO SECTION */}
-      <section className="w-full min-h-screen pt-20 flex flex-col items-start text-left bg-gradient-to-br from-blue-200 via-white to-blue-200 px-5 md:px-20">
+      <section className="w-full min-h-screen pt-20 flex flex-col items-start text-left bg-gradient-to-br from-blue-200 via-white to-blue-200 px-5 md:px-20 pb-20">
 
         {/* Heading centered */}
-        <div className="w-full flex justify-center">
-          <h1 className="mt-12 text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-center whitespace-nowrap">
+        <div className="w-full flex justify-center px-4">
+          <h1 className="mt-12 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-snug md:leading-tight text-center">
             Your Dream of{" "}
             <span className="inline-block bg-gradient-to-br from-purple-800 to-orange-600 bg-clip-text text-transparent">
               Studying Abroad
             </span>
-            <br />
+            <br className=" sm:block" />
             Starts Here
           </h1>
         </div>
 
-        {/* Paragraph left-aligned */}
-        <p className="mt-6 text-lg md:text-xl max-w-xl text-slate-700">
-          We guide you through every step of your international education journey.
-          From university selection to visa approval, we make your study abroad
-          dreams a reality.
-        </p>
+      {/* Paragraph with line breaks only on large screens */}
+      <p className="mt-6 text-lg md:text-xl text-justify lg:text-left max-w-full text-slate-700">
+        We guide you through every step of your international education journey.
+        <span className="hidden lg:block"></span>
+        From university selection to visa approval, we make your study abroad
+        <span className="hidden lg:block"></span>
+        dreams a reality.
+      </p>
+
 
         {/* Button centered */}
         <div className="w-full flex justify-center mt-8">
           <Link
             to="/register"
-            className="bg-blue-500 hover:bg-blue-400 text-white py-3 px-8 rounded-full font-semibold transition w-max"
+            className="bg-blue-500 hover:bg-blue-400 text-white py-3 px-6 sm:px-8 md:px-10 rounded-full font-semibold transition-colors text-center"
           >
             Apply here
           </Link>
         </div>
+        
       </section>
+
+
 
       {/* Other sections */}
       <ServicesSection id="services" />

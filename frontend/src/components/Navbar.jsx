@@ -29,38 +29,36 @@ const Navbar = () => {
             </span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className=" md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.to}
-                className="text-black hover:text-blue-600 transition-colors font-medium"
-              >
-                {link.name}
-              </Link>
-            ))}
-          </nav>
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center gap-8 sm:gap-1">
+          {navLinks.map((link) => (
+            <Link
+              key={link.name}
+              to={link.to}
+              className="text-black hover:text-blue-600 transition-colors font-medium"
+            >
+              {link.name}
+            </Link>
+          ))}
+        </nav>
 
-          {/* Desktop CTA */}
-          <div className=" md:flex items-center gap-3">
-            <Link
-              to="/login"
-              className="px-4 py-2 text-slate-900 font-medium hover:text-blue-600 transition"
-            >
-              Login
-            </Link>
-            <Link
-              to="/register"
-              className="px-4 py-2 text-white bg-blue-600 rounded-full font-medium hover:bg-blue-500 transition"
-            >
-              Get Started
-            </Link>
-          </div>
+        {/* Desktop CTA */}
+        <div className="hidden md:flex items-center gap-3">
+          <Link to="/login" className="px-4 py-2 text-slate-900 font-medium">
+            Login
+          </Link>
+          <Link
+            to="/register"
+            className="px-4 py-2 text-white bg-blue-600 rounded-full font-medium"
+          >
+            Get Started
+          </Link>
+        </div>
+
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 text-slate-900 border-2 border-blue-600 rounded transition"
+            className="md:hidden p-2 text-slate-900 border-2  border-blue-600 rounded transition"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <X size={28}/> : <Menu size={28}/>}
@@ -68,39 +66,43 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden bg-white border-t border-slate-200">
-            <nav className="flex flex-col gap-10 py-4">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  to={link.to}
-                  className="px-4 py-2 text-slate-900 hover:bg-blue-50 rounded-lg transition"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {link.name}
-                </Link>
-              ))}
+          {isMenuOpen && (
+            <div className="md:hidden w-full bg-white/30 backdrop-blur-md shadow-md border-t border-white/20">
+              <nav className="flex flex-col gap-2 py-4">
+                {/* Nav Links */}
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.name}
+                    to={link.to}
+                    className="px-4 py-2 text-slate-900 hover:text-blue-600 rounded-lg transition-colors"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {link.name}
+                  </Link>
+                ))}
 
-              <div className="flex flex-col px-4 pt-4 gap-3">
-                <Link
-                  to="/login"
-                  className="px-4 py-2 text-white bg-blue-600 hover:bg-blue-500 rounded transition text-center"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Login
-                </Link>
-                <Link
-                  to="/register"
-                  className="px-4 py-2 text-white bg-blue-600 hover:bg-blue-500 rounded-full transition text-center"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Get Started
-                </Link>
-              </div>
-            </nav>
-          </div>
-        )}
+                {/* Buttons */}
+                <div className="flex flex-col px-4 pt-4 gap-2">
+                  <Link
+                    to="/login"
+                    className="px-4 py-2 text-white bg-blue-600 hover:bg-blue-500 rounded transition-colors text-center"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    to="/register"
+                    className="px-4 py-2 text-white bg-blue-600 hover:bg-blue-500 rounded transition-colors text-center"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Get Started
+                  </Link>
+                </div>
+              </nav>
+            </div>
+          )}
+
+
       </div>
     </header>
   );

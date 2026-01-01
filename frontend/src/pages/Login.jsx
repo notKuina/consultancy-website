@@ -1,182 +1,91 @@
-import React, { useState } from "react";
+import React from 'react'
+import { Link } from "react-router-dom";
 
-const Login = () => {
-  const [activeTab, setActiveTab] = useState("login");
-
+function Login() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
-      {/* Centered container */}
-      <div className="w-full max-w-md space-y-8 mx-auto">
+  <>
+      <div class="min-h-screen flex items-center justify-center py-24">
+    <div class="max-w-md w-full space-y-8">
 
-        {/* Logo */}
-        <div className="text-center">
-          <h1 className="text-3xl font-bold text-blue-900">Study Abroad</h1>
-          <p className="mt-2 text-gray-600">Sign in to your account or create a new one</p>
-        </div>
-
-        {/* Tabs */}
-        <div className="flex bg-gray-100 p-1 rounded-lg w-full">
-          <button
-            className={`flex-1 py-2 text-center font-medium rounded-md transition-all duration-200 ${
-              activeTab === "login" ? "bg-white text-blue-900 shadow-sm" : "text-gray-600 hover:text-gray-800"
-            }`}
-            onClick={() => setActiveTab("login")}
-          >
-            Sign In
-          </button>
-          <button
-            className={`flex-1 py-2 text-center font-medium rounded-md transition-all duration-200 ${
-              activeTab === "signup" ? "bg-white text-blue-900 shadow-sm" : "text-gray-600 hover:text-gray-800"
-            }`}
-            onClick={() => setActiveTab("signup")}
-          >
-            Sign Up
-          </button>
-        </div>
-
-        {/* Login Form */}
-        {activeTab === "login" && (
-          <form className="space-y-6 w-full">
-            <div>
-              <label htmlFor="login-email" className="block text-sm font-medium text-gray-700 mb-2">
-                Email Address
-              </label>
-              <input
-                id="login-email"
-                name="email"
-                type="email"
-                required
-                placeholder="Enter your email"
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-900"
-              />
-            </div>
-            <div>
-              <label htmlFor="login-password" className="block text-sm font-medium text-gray-700 mb-2">
-                Password
-              </label>
-              <input
-                id="login-password"
-                name="password"
-                type="password"
-                required
-                placeholder="Enter your password"
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-900"
-              />
-            </div>
-            <div className="flex items-center justify-between">
-              <label className="flex items-center">
-                <input type="checkbox" className="rounded border-gray-300 text-blue-900 focus:ring-blue-900" />
-                <span className="ml-2 text-sm text-gray-600">Remember me</span>
-              </label>
-              <a href="#" className="text-sm text-blue-900 hover:text-blue-700">
-                Forgot password?
-              </a>
-            </div>
-            <button
-              type="submit"
-              className="w-full bg-blue-900 text-white py-2 rounded-lg hover:bg-blue-800 transition"
-            >
-              Sign In
-            </button>
-          </form>
-        )}
-
-        {/* Signup Form */}
-        {activeTab === "signup" && (
-          <form className="space-y-6 w-full">
-            <div>
-              <label htmlFor="signup-name" className="block text-sm font-medium text-gray-700 mb-2">
-                Full Name
-              </label>
-              <input
-                id="signup-name"
-                name="name"
-                type="text"
-                required
-                placeholder="Enter your full name"
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-900"
-              />
-            </div>
-            <div>
-              <label htmlFor="signup-email" className="block text-sm font-medium text-gray-700 mb-2">
-                Email Address
-              </label>
-              <input
-                id="signup-email"
-                name="email"
-                type="email"
-                required
-                placeholder="Enter your email"
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-900"
-              />
-            </div>
-            <div>
-              <label htmlFor="signup-password" className="block text-sm font-medium text-gray-700 mb-2">
-                Password
-              </label>
-              <input
-                id="signup-password"
-                name="password"
-                type="password"
-                required
-                placeholder="Create a password"
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-900"
-              />
-            </div>
-            <div>
-              <label htmlFor="signup-confirm" className="block text-sm font-medium text-gray-700 mb-2">
-                Confirm Password
-              </label>
-              <input
-                id="signup-confirm"
-                name="confirm"
-                type="password"
-                required
-                placeholder="Confirm your password"
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-900"
-              />
-            </div>
-            <div className="flex items-center">
-              <input id="terms" type="checkbox" required className="rounded border-gray-300 text-blue-900 focus:ring-blue-900" />
-              <label htmlFor="terms" className="ml-2 text-sm text-gray-600">
-                I agree to the <a href="#" className="text-blue-900 hover:text-blue-700">Terms and Conditions</a>
-              </label>
-            </div>
-            <button
-              type="submit"
-              className="w-full bg-blue-900 text-white py-2 rounded-lg hover:bg-blue-800 transition"
-            >
-              Create Account
-            </button>
-          </form>
-        )}
-
-        {/* Social Login */}
-        <div className="mt-6 w-full">
-          <div className="relative">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-gray-300"></div>
-            </div>
-            <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-gray-50 text-gray-500">Or continue with</span>
-            </div>
-          </div>
-
-          <div className="mt-6 grid grid-cols-2 gap-3">
-            <button className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 transition-colors">
-              <i className="fab fa-google text-red-500"></i>
-              <span className="ml-2">Google</span>
-            </button>
-            <button className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 transition-colors">
-              <i className="fab fa-facebook text-blue-500"></i>
-              <span className="ml-2">Facebook</span>
-            </button>
-          </div>
-        </div>
-
+      <div class="text-center">
+        <h2 class="text-3xl font-bold text-gray-900">Welcome</h2>
+        <p class="mt-2 text-gray-600">
+          Log in to your account 
+        </p>
       </div>
-    </div>
-  );
-};
 
-export default Login;
+      <div class="flex bg-gray-100 p-1 rounded-lg">
+        <button
+          class="flex-1 py-2 px-4 text-center font-medium rounded-md bg-white text-blue-600 shadow-sm"
+        >
+          Login
+        </button>
+       <Link
+        to="/register"
+          class="flex-1 py-2 px-4 text-center font-medium rounded-md text-gray-600 hover:text-gray-800 transition"
+        >
+          Sign Up
+        </Link>
+      </div>
+
+      <form id="loginForm" class="space-y-6">
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">
+            Email Address
+          </label>
+          <input
+            type="email"
+            name="email"
+            required
+            placeholder="Enter your email"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
+          />
+          <p id="emailError" class="text-red-600 text-sm mt-1 hidden"></p>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">
+            Password
+          </label>
+          <input
+            type="password"
+            name="password"
+            required
+            placeholder="Enter your password"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
+          />
+          <p id="passwordError" class="text-red-600 text-sm mt-1 hidden"></p>
+        </div>
+
+        <div class="flex items-center justify-between">
+          <label class="flex items-center">
+            <input
+              type="checkbox"
+              class="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+            />
+            <span class="ml-2 text-sm text-gray-600">Remember me</span>
+          </label>
+          <a
+            href="#"
+            class="text-sm text-blue-600 hover:underline"
+          >
+            Forgot password?
+          </a>
+        </div>
+
+        <button
+          type="submit"
+          class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-400 transition"
+        >
+          Sign In
+        </button>
+      </form>
+
+    </div>
+  </div>
+  </>
+  )
+}
+
+export default Login
