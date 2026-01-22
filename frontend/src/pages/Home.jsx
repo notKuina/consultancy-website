@@ -25,12 +25,10 @@ const Home = () => {
         </div>
 
       {/* Paragraph with line breaks only on large screens */}
-      <p className="mt-6 text-lg md:text-xl text-justify lg:text-left max-w-full text-slate-700">
-        We guide you through every step of your international education journey.
-        <span className="hidden lg:block"></span>
-        From university selection to visa approval, we make your study abroad
-        <span className="hidden lg:block"></span>
-        dreams a reality.
+      <p className="mt-6 max-w-full text-lg md:text-xl text-slate-700 text-left lg:text-left">
+        We guide you through every step  <br /> of your international education journey.<br/>
+        From university selection to visa approval,<br />
+         we make your study abroad dreams a reality.
       </p>
 
 
