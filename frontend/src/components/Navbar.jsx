@@ -1,10 +1,10 @@
-import { useState } from "react";
+// import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X, GraduationCap } from "lucide-react";
 import React from "react";
 
 const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  // const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navLinks = [
     { name: "Home", to: "/" },
@@ -55,8 +55,7 @@ const Navbar = () => {
           </Link>
         </div>
 
-
-          {/* Mobile Menu Button */}
+{/* 
           <button
             className="md:hidden p-2 text-slate-900 border-2  border-blue-600 rounded transition"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -65,12 +64,11 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* Mobile Navigation */}
           {isMenuOpen && (
             <div className="md:hidden w-full bg-white/30 backdrop-blur-md shadow-md border-t border-white/20">
               <nav className="flex flex-col gap-2 py-4">
-                {/* Nav Links */}
-                {navLinks.map((link) => (
+
+              {navLinks.map((link) => (
                   <Link
                     key={link.name}
                     to={link.to}
@@ -81,7 +79,6 @@ const Navbar = () => {
                   </Link>
                 ))}
 
-                {/* Buttons */}
                 <div className="flex flex-col px-4 pt-4 gap-2">
                   <Link
                     to="/login"
@@ -99,10 +96,10 @@ const Navbar = () => {
                   </Link>
                 </div>
               </nav>
+
+          )} */}
+
             </div>
-          )}
-
-
       </div>
     </header>
   );
