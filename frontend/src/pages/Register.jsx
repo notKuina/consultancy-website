@@ -1,112 +1,152 @@
 import React from 'react'
 import {Link} from "react-router-dom";
+import {useForm} from "react-hook-form";
+import {yupResolver} from "@hookform/resolvers/yup";
+import {registerSchema} from "../utils/Schema";
+import toast from 'react-hot-toast';
+
 function Register() {
+  const{register,handleSubmit,formState:{errors}, reset }=useForm({
+    resolver:yupResolver(registerSchema),
+     mode:"onChange",
+    });
+
+  const onSubmit=(data)=>{
+    console.log(data);
+    toast.success("Account created successfully!");
+    reset();
+  };
+
+  
   return (
     <>
     
-<div class="min-h-screen flex items-center justify-center py-24">
-  <div class="max-w-md w-full space-y-8">
-    <div class="text-center">
-      <h2 class="text-3xl font-bold text-gray-900">Create an account</h2>
-      <p class="mt-2 text-gray-600">
+<div className="min-h-screen flex items-center justify-center py-24">
+  <div className="max-w-md w-full space-y-8">
+    <div className="text-center">
+      <h2 className="text-3xl font-bold text-gray-900">Create an account</h2>
+      <p className="mt-2 text-gray-600">
         Sign in to your account 
       </p>
     </div>
 
-    <div class="flex bg-gray-100 p-1 rounded-lg">
+    <div className="flex bg-gray-100 p-1 rounded-lg">
       <Link
       to="/login"
-        class="flex-1 py-2 px-4 text-center font-medium rounded-md text-gray-600 hover:text-gray-800 transition"
+        className="flex-1 py-2 px-4 text-center font-medium rounded-md text-gray-600 hover:text-gray-800 transition"
       >
         Login
       </Link>
       <button
-        class="flex-1 py-2 px-4 text-center font-medium rounded-md bg-white text-blue-600 shadow-sm"
+        className="flex-1 py-2 px-4 text-center font-medium rounded-md bg-white text-blue-600 shadow-sm"
       >
         Sign Up
       </button>
     </div>
 
-    <form id="registerForm" class="space-y-6">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
 
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-gray-700 mb-2">
           Username
         </label>
+
         <input
           type="text"
-          name="username"
+          {...register("username")}
           placeholder="Enter your username"
-          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
           required
         />
-        <p class="text-red-600 text-sm mt-1 hidden" id="usernameError"></p>
+
+        {errors.username &&(
+        <p className="text-red-600 text-sm mt-1">
+          {errors.username.message}
+        </p>
+        )}
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-gray-700 mb-2">
           Email Address
         </label>
+
         <input
           type="email"
-          name="email"
+         {...register("email")}
           placeholder="Enter your email"
-          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
           required
         />
-        <p class="text-red-600 text-sm mt-1 hidden" id="emailError"></p>
+
+        {errors.email &&(
+        <p className="text-red-600 text-sm mt-1">
+          {errors.email.message}
+        </p>
+        )}
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-gray-700 mb-2">
           Password
         </label>
         <input
           type="password"
-          name="password"
           placeholder="Create a password"
-          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
+          {...register("password")}
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
           required
         />
-        <p class="text-red-600 text-sm mt-1 hidden" id="passwordError"></p>
+        {errors.password && (
+        <p className="text-red-600 text-sm mt-1 " >
+          {errors.password.message}
+        </p>
+        )}
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-gray-700 mb-2">
           Confirm Password
         </label>
         <input
           type="password"
-          name="password2"
+          {...register("confirm")}
           placeholder="Confirm your password"
-          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
           required
         />
-        <p class="text-red-600 text-sm mt-1 hidden" id="password2Error"></p>
+        {errors.confirm && (
+        <p className="text-red-600 text-sm mt-1" >
+          {errors.confirm.message}
+        </p>
+        )}
       </div>
 
-      <div class="flex items-center">
+      <div className="flex items-center">
         <input
-          type="checkbox"
+          type="checkbox" {...register("terms")}
           required
-          class="rounded border-gray-300 text-green-800 focus:ring-green-500"
+          className="rounded border-gray-300 text-green-800 focus:ring-green-500"
         />
-        <label class="ml-2 text-sm text-gray-600">
+        <label className="ml-2 text-sm text-gray-600">
           I agree to the Terms and Conditions     
         </label>
       </div>
+      {errors.terms &&(
+        <p className="text-red-600 text-sm">{errors.terms.message}</p>
+      )}
 
       <button
         type="submit"
-        class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-400 transition"
+        className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-400 transition"
       >
         Create Account
       </button>
     </form>
 
-    <p class="text-sm text-gray-600 text-center">
+    <p className="text-sm text-gray-600 text-center">
       Already have an account?
-      <Link to="/login" class="text-blue-600 font-medium hover:underline">
+      <Link to="/login" className="text-blue-600 font-medium hover:underline">
         Login
       </Link>
     </p>

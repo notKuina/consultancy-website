@@ -7,3 +7,5 @@ package used: <br>
 -lucide-react<br>
 -react-router-dom<br>
 -npm i react-scroll<br>
+-yup,formik<br>
+-reat-hot-toast<br>

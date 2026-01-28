@@ -11,10 +11,12 @@ import ServicesSection from "./pages/ServicesSection";
 import Testimonials from "./pages/Testimonials";
 import Footer from "./components/Footer";
 import ProcessSection from "./pages/ProcessSection";
+import {Toaster} from "react-hot-toast";
 
 function App() {
   return (
     <BrowserRouter>
+    <Toaster position="top-right" />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
