@@ -48,20 +48,40 @@ function Register() {
 
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-2">
-          Username
+          First Name
         </label>
 
         <input
           type="text"
-          {...register("username")}
-          placeholder="Enter your username"
+          {...register("firstName")}
+          placeholder="Enter your first name"
           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
           required
         />
 
-        {errors.username &&(
+        {errors.firstName &&(
         <p className="text-red-600 text-sm mt-1">
-          {errors.username.message}
+          {errors.firstName.message}
+        </p>
+        )}
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          Last Name
+        </label>
+
+        <input
+          type="text"
+          {...register("lastName")}
+          placeholder="Enter your last name"
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
+          required
+        />
+
+        {errors.lastName &&(
+        <p className="text-red-600 text-sm mt-1">
+          {errors.lastName.message}
         </p>
         )}
       </div>
@@ -74,7 +94,7 @@ function Register() {
         <input
           type="email"
          {...register("email")}
-          placeholder="Enter your email"
+          placeholder="Enter your email address"
           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
           required
         />
@@ -82,6 +102,105 @@ function Register() {
         {errors.email &&(
         <p className="text-red-600 text-sm mt-1">
           {errors.email.message}
+        </p>
+        )}
+      </div>
+
+
+        <div>
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          Phone number
+        </label>
+
+        <input
+          type="text"
+          {...register("number")}
+          placeholder="Enter your phone number"
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
+          required
+        />
+
+        {errors.number &&(
+        <p className="text-red-600 text-sm mt-1">
+          {errors.number.message}
+        </p>
+        )}
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          Nearest Office
+        </label>
+
+        <select 
+          {...register("nearestOffice")}
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
+          required>
+          <option value="" className="text-gray-400">Nearest Office</option>
+          <option value="kathmandu">Kathmandu</option>
+          <option value="pokhara">Pokhara</option>
+          <option value="dharan">Dharan</option>
+          <option value="butwal">Butwal</option>
+          <option value="chitwan">Chitwan</option>
+        </select>
+
+        {errors.nearestOffice &&(
+        <p className="text-red-600 text-sm mt-1">
+          {errors.nearestOffice.message}
+        </p>
+        )}
+      </div>
+
+        <div>
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+        My question is regarding
+        </label>
+
+        <select
+          {...register("questionRegarding")}
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
+          required>
+          <option value="" className="text-gray-400">My question is regarding</option>
+          <option value="course">Course</option>
+          <option value="visa">Visa</option>
+          <option value="preparation">Language preparation</option>
+          <option value="testvoucher">English test voucher</option>
+          <option value="documentation">Financial documentation</option>
+          <option values="borderupdates">Border updates</option>
+          
+          </select>
+
+        {errors.questionRegarding &&(
+        <p className="text-red-600 text-sm mt-1">
+          {errors.questionRegarding.message}
+        </p>
+        )}
+      </div>
+
+
+        <div>
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          Preffered Destination Country
+        </label>
+
+        <select
+          {...register("destinationCountry")}
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
+          required>
+          <option value="" className="text-gray-400"> Preferred Destination Country</option>
+          <option value="australia">Australia</option>
+          <option value="uk">United Kingdom</option>
+          <option value="usa">USA</option>
+          <option value="canada">Canada</option>
+          <option value="newzealand">New Zealand</option>
+          <option values="help">Help me decide</option>
+          
+          </select>
+       
+
+        {errors.destinationCountry &&(
+        <p className="text-red-600 text-sm mt-1">
+          {errors.destinationCountry.message}
         </p>
         )}
       </div>
