@@ -38,9 +38,9 @@ A full-stack consultancy web application built with **Django REST Framework** an
 ## ⚙️ Backend Setup<br>
 
 ```bash
-cd backend <br>
-python -m venv venv<br>
-venv\Scripts\activate<br>
-pip install -r requirements.txt<br>
-python manage.py migrate<br>
-python manage.py runserver<br>
+cd backend
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver
