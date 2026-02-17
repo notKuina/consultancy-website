@@ -1,47 +1,46 @@
 from rest_framework import serializers
-from django.contrib.auth.models import User
-from django.contrib.auth.password_validation import validate_password
-from .models import Profile
+from django.contrib.auth import get_user_model
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
-class RegisterSerializer(serializers.Serializer):
-    firstName = serializers.CharField()
-    lastName=serializers.CharField()
-    email=serializers.EmailField()
-    number=serializers.CharField()
-    nearest_office=serializers.CharField()
-    question_regarding=serializers.CharField()
-    destination_country=serializers.CharField()
-    password=serializers.CharField(write_only=True, validators=[validate_password])
-    confirm=serializers.CharField(write_only=True)
-    terms=serializers.BooleanField()
+User = get_user_model()
 
-    def validate(self,data):
+class RegisterSerializer(serializers.ModelSerializer):
+    confirm = serializers.CharField(write_only=True)
+    terms = serializers.BooleanField(write_only=True)
+
+    class Meta:
+        model = User
+        fields = [
+            'id', 'first_name', 'last_name', 'email', 'phone_number',
+            'nearest_office', 'question_regarding', 'destination_country',
+            'password', 'confirm', 'terms',
+        ]
+        extra_kwargs = {'password': {'write_only': True}}
+
+    def validate(self, data):
         if data['password'] != data['confirm']:
-            raise serializers.ValidationError({"Confirm": "Passwords donot match"})
-
-        if not data['terms']:
-            raise serializers.ValidationError({"terms": "You must accept terms and conditions"})
-        
-        if User.objects.filter(email=data['email']).exists():
-            raise serializers.ValidationError({"email": "Email already registered"})
-
+            raise serializers.ValidationError({'confirm': 'Passwords do not match'})
+        if not data.get('terms'):
+            raise serializers.ValidationError({'terms': 'You must accept terms and conditions'})
         return data
 
-def create(self,validated_data):
-    user=User.objects.create(
-        email=validated_data['email'],
-        first_name=validated_data['firstName'],
-        last_name=validated_data['lastName'],
-    )
-    user.set_password(validated_data['password'])
-    user.save()
+    def create(self, validated_data):
+        validated_data.pop('confirm')
+        validated_data.pop('terms')
+        user = User.objects.create_user(**validated_data)
+        return user
 
-    Profile.objects.create(
-        user=user,
-        phone_number=validated_data['number'],
-        nearest_office=validated_data['nearestOffice'],
-        question_regarding=validated_data['questionRegarding'],
-        destination_country=validated_data['destinationCountry'],
-    )
 
-    return user
+class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
+        # Optional: add first name in JWT token claims (not strictly needed)
+        token['first_name'] = user.first_name
+        return token
+
+    def validate(self, attrs):
+        data = super().validate(attrs)
+        # Add first_name to the response JSON
+        data['first_name'] = self.user.first_name
+        return data
