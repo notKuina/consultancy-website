@@ -3,11 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { GraduationCap } from "lucide-react";
 import toast from "react-hot-toast";
 import RoleSelectionModal from "./modal/RoleSelection";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthProvider";
 
 function Navbar() {
   const navigate = useNavigate();
-  const [username, setUsername] = useState(() => localStorage.getItem("username"));
-
+  const {user,logout} = useContext(AuthContext);
   const [isRoleModalOpen, setRoleModalOpen] = useState(false);
 
   const navLinks = [
@@ -19,17 +20,18 @@ function Navbar() {
   ];
 
   const handleLogout = () => {
-    localStorage.removeItem("access_token");
-    localStorage.removeItem("refresh_token");
-    localStorage.removeItem("username");
-    setUsername(null);
+    logout();
     toast.success("Logged out successfully!");
     navigate("/");
   };
 
   const handleSelectRole = (role) => {
     setRoleModalOpen(false);
-    navigate(`/register/${role}`);
+    if (role === "student"){
+      navigate("/register");
+    }else{
+    navigate("/cregister");
+  }
   };
 
   return (
@@ -61,9 +63,9 @@ function Navbar() {
 
           {/* Desktop CTA / User Info */}
           <div className="flex items-center gap-3">
-            {username ? (
+            {user ? (
               <>
-                <span className="font-medium text-gray-700">Hello, {username}</span>
+                <span className="font-medium text-gray-700">Hello, {user.username}</span>
                 <button
                   onClick={handleLogout}
                   className="px-4 py-2 text-white bg-red-500 hover:bg-red-400 rounded-full font-medium"

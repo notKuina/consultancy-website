@@ -12,7 +12,11 @@ const Home = () => {
 
   const handleSelectRole = (role) => {
     setRoleModalOpen(false);
-    navigate(`/register/${role}`);
+    if (role== "student"){
+      navigate("/register");
+    }else{
+    navigate("/cregister");
+    }
   };
 
   return (
