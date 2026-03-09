@@ -1,13 +1,11 @@
-import { createContext, useState } from "react";
-import React from "react";
+import React, { createContext, useContext, useState } from "react";
 
-export const AuthContext = createContext();
+const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(() => {
     const token = localStorage.getItem("access_token");
     const username = localStorage.getItem("username");
-
     return token ? { username, token } : null;
   });
 
@@ -29,3 +27,6 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+
+// Custom hook — now useContext is actually used
+export const useAuth = () => useContext(AuthContext);

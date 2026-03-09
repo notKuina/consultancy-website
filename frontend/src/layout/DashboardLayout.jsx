@@ -6,7 +6,7 @@ const DashboardLayout = () => {
     <div>
 
 
-      <main className="pt-20 p-4 relative">
+      <main className="pt-1 p-4 relative">
         {/* This renders child routes */}
         <Outlet />
       </main>

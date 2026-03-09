@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from "react-router-dom";
 import { useNavigate} from "react-router-dom";
 import { yupResolver } from '@hookform/resolvers/yup';
-import {loginSchema} from "../utils/Schema";
+import {loginSchema} from "../utils/registerSchema";
 import toast from "react-hot-toast";
 import api from "../utils/Api";
 import { useForm } from 'react-hook-form';
@@ -18,13 +18,10 @@ function ConsultancyLogin() {
   try {
     const response = await api.post("account/login/", data);
 
-    // Save JWT tokens
     localStorage.setItem("access_token", response.data.access);
     localStorage.setItem("refresh_token", response.data.refresh);
-    localStorage.setItem("first_name", response.data.first_name); // store first name
+    localStorage.setItem("first_name", response.data.first_name); 
 
-    // Save username for Navbar
-    // Using first_name if backend returns it, else fallback to email
     localStorage.setItem("username", data.email);
 
     toast.success("Logged in successfully!");

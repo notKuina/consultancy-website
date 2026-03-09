@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { registerSchema } from "../utils/Schema";
+import { registerSchema } from "../utils/registerSchema";
 import toast from 'react-hot-toast';
 
 function ConsultantRegistration() {

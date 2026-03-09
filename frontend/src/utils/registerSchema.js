@@ -1,13 +1,13 @@
 import * as yup from "yup";
 
 export const registerSchema = yup.object({
-  firstName: yup
+  first_name: yup
     .string()
     .trim()
     .min(2, "First name must be at least 2 characters")
     .required("First name is required"),
 
-  lastName: yup
+  last_name: yup
     .string()
     .trim()
     .min(2, "Last name must be at least 2 characters")
@@ -24,23 +24,23 @@ export const registerSchema = yup.object({
     )
     .required("Email is required"),
 
-  number: yup
+  phone_number: yup
     .string()
     .trim()
     .matches(/^[0-9]{7,15}$/, "Enter a valid phone number")
     .required("Phone number is required"),
 
-  nearestOffice: yup
+  nearest_office: yup
     .string()
     .notOneOf([""], "Please select nearest office")
     .required(),
 
-  questionRegarding: yup
+  question_regarding: yup
     .string()
     .notOneOf([""], "Please select a topic")
     .required(),
 
-  destinationCountry: yup
+  destination_country: yup
     .string()
     .notOneOf([""], "Please select destination country")
     .required(),
@@ -65,12 +65,9 @@ export const registerSchema = yup.object({
     .boolean()
     .oneOf([true], "You must agree to the terms and conditions")
     .required(),
-
 });
 
-export const loginSchema=yup.object().shape({
+export const loginSchema = yup.object().shape({
   email: yup.string().email("Invalid email").required("Email is required"),
   password: yup.string().required("Password is required"),
-  
 });
-

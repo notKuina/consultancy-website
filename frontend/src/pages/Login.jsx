@@ -4,13 +4,12 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import toast, { Toaster } from "react-hot-toast";
 import api from "../utils/Api";
-import { loginSchema } from "../utils/Schema";
-import { useContext } from "react";
-import { AuthContext } from "../context/AuthProvider";
+import { loginSchema } from "../utils/registerSchema";
+import { useAuth } from "../context/AuthContext";
 
 function Login() {
   const navigate = useNavigate();
-  const {login} = useContext(AuthContext);
+  const {login} = useAuth();
 
   const {
     register,
@@ -20,26 +19,36 @@ function Login() {
     resolver: yupResolver(loginSchema),
     mode: "onChange",
   });
+  
+const onSubmit = async (data) => {
+  try {
+    const response = await api.post("account/login/", data);
 
-  const onSubmit = async (data) => {
-    try {
-      const response = await api.post("account/login/", data);
-      const username = response.data.first_name || data.email;
-      login(username, response.data.access);
-      localStorage.setItem("refresh_token", response.data.refresh);
+    const { access, refresh, first_name } = response.data;
 
-      toast.success("Logged in successfully!");
-      navigate("/dashboard");
-    } catch (error) {
-      console.error(error.response?.data);
-      // Ensure toast always shows
-      if (error.response?.data) {
-        Object.values(error.response.data).forEach((msg) => toast.error(msg));
-      } else {
-        toast.error("Invalid email or password!");
-      }
+    // Save tokens properly
+    localStorage.setItem("access", access);
+    localStorage.setItem("refresh_token", refresh);
+
+    const username = first_name || data.email;
+
+    login(username, access); // use destructured variable
+
+    toast.success("Logged in successfully!");
+    navigate("/dashboard");
+
+  } catch (error) {
+    console.error(error.response?.data);
+
+    if (error.response?.data) {
+      Object.values(error.response.data).forEach((msg) =>
+        toast.error(msg)
+      );
+    } else {
+      toast.error("Invalid email or password!");
     }
-  };
+  }
+};
 
   return (
     <>

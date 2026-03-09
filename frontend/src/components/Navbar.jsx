@@ -3,12 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { GraduationCap } from "lucide-react";
 import toast from "react-hot-toast";
 import RoleSelectionModal from "./modal/RoleSelection";
-import { useContext } from "react";
-import { AuthContext } from "../context/AuthProvider";
+import { useAuth } from "../context/AuthContext";
 
 function Navbar() {
   const navigate = useNavigate();
-  const {user,logout} = useContext(AuthContext);
+  const {user,logout} = useAuth();
   const [isRoleModalOpen, setRoleModalOpen] = useState(false);
 
   const navLinks = [
@@ -33,6 +32,9 @@ function Navbar() {
     navigate("/cregister");
   }
   };
+
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+    const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/30 backdrop-blur-md shadow-md border-b border-slate-200">
@@ -65,13 +67,22 @@ function Navbar() {
           <div className="flex items-center gap-3">
             {user ? (
               <>
-                <span className="font-medium text-gray-700">Hello, {user.username}</span>
-                <button
-                  onClick={handleLogout}
-                  className="px-4 py-2 text-white bg-red-500 hover:bg-red-400 rounded-full font-medium"
-                >
-                  Logout
-                </button>
+
+                {/* Profile */}
+                <div className="relative">
+                  <button onClick={toggleDropdown} className="w-10 h-10 rounded-full overflow-hidden focus:outline-none">
+                    <img src="https://i.pravatar.cc/40?img=47" alt="Profile" className="w-full h-full object-cover rounded-full" />
+                    <span className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full"></span>
+                  </button>
+
+                  {dropdownOpen && (
+                    <div className="absolute right-0 mt-2 w-40 bg-white shadow-lg rounded-md z-10">
+                      <Link to="/dashboard" className="block px-4 py-2 hover:bg-gray-100">Dashboard</Link>
+                      <a href="#" className="block px-4 py-2 hover:bg-gray-100">View Profile</a>
+                      <button onClick={handleLogout} className="block px-4 py-2 text-red-500 hover:bg-gray-100">Logout</button>
+                    </div>
+                  )}
+                </div>
               </>
             ) : (
               <>

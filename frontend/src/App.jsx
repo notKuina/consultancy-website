@@ -45,7 +45,7 @@ function AppContent() {
   return (
     <>
       <Toaster position="top-right" reverseOrder={false} /> 
-      <Navbar />
+      {!location.pathname.startsWith("/dashboard") && <Navbar />}
 
       <Routes>
         {/* Public pages */}

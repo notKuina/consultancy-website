@@ -26,9 +26,9 @@ class CustomUser(AbstractUser):
     COUNTRY_CHOICES = [
         ('australia','Australia'),
         ('uk','United Kingdom'),
-        ('usa', 'USA'),
+        ('usa','USA'),
         ('canada','Canada'),
-        ('newzealand', 'New Zealand'),
+        ('newzealand','New Zealand'),
         ('help','Help Me Decide'),
     ]
 
@@ -36,16 +36,13 @@ class CustomUser(AbstractUser):
     question_regarding = models.CharField(max_length=20, choices=QUESTION_CHOICES)
     destination_country = models.CharField(max_length=20, choices=COUNTRY_CHOICES)
 
-    # Login via email
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []  # remove username from required fields
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = ["username"]
 
     def save(self, *args, **kwargs):
-        # Auto-generate username from email if not provided
         if not self.username:
-            base_username = self.email.split('@')[0]
+            base_username = self.email.split("@")[0]
             username = slugify(base_username)
-            # Ensure uniqueness
             counter = 1
             while CustomUser.objects.filter(username=username).exists():
                 username = f"{base_username}{counter}"

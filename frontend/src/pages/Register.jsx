@@ -1,22 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { registerSchema } from "../utils/Schema";
+import { registerSchema } from "../utils/registerSchema";
 import toast from 'react-hot-toast';
 import api from "../utils/Api";
 
 function Register() {
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
 
-  const { register, handleSubmit, formState: { errors }, reset } = useForm({
+  const { register, handleSubmit, formState: { errors,isSubmitting }, reset } = useForm({
     resolver: yupResolver(registerSchema),
     mode: "onChange",
   });
 
   const onSubmit = async (data) => {
-    setLoading(true);
     try {
       const response = await api.post("account/register/", data);
       console.log("Response:", response.data);
@@ -30,10 +28,8 @@ function Register() {
       } else {
         toast.error("Registration failed!");
       }
-    } finally {
-      setLoading(false);
-    }
-  };
+    } 
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center py-24">
@@ -75,12 +71,12 @@ function Register() {
           </div>
 
           {/* Username */}
-          <div>
+          {/* <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Username</label>
             <input type="text" {...register("username")} placeholder="Enter a username"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none" />
             {errors.username && <p className="text-red-600 text-sm mt-1">{errors.username.message}</p>}
-          </div>
+          </div> */}
 
           {/* Email */}
           <div>
@@ -168,9 +164,9 @@ function Register() {
           </div>
           {errors.terms && <p className="text-red-600 text-sm">{errors.terms.message}</p>}
 
-          <button type="submit" disabled={loading}
-            className={`w-full py-2 rounded-lg text-white ${loading ? 'bg-gray-400' : 'bg-blue-600 hover:bg-blue-400'} transition`}>
-            {loading ? "Creating..." : "Create Account"}
+          <button type="submit" disabled={isSubmitting}
+            className={`w-full py-2 rounded-lg text-white ${isSubmitting ? 'bg-gray-400' : 'bg-blue-600 hover:bg-blue-400'} transition`}>
+            {isSubmitting ? "Creating..." : "Create Account"}
           </button>
         </form>
 
